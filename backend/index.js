@@ -1,7 +1,10 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const { sql } = require('@vercel/postgres');
+
 const app = express();
+const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
@@ -41,10 +44,14 @@ app.get('/api/projects', async (req, res) => {
   }
 });
 
-// Handle 404 for API routes
-app.use('/api/*', (req, res) => {
+// Handle 404 for API routes - Fixed wildcard issue
+app.use('/api', (req, res) => {
   res.status(404).json({ error: 'API endpoint not found' });
 });
 
-module.exports = app;
+// Start server
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
 
+module.exports = app;
