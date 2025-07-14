@@ -1,10 +1,18 @@
-// frontend/vite.config.js
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue' // atau react jika pakai React
+import { fileURLToPath, URL } from 'node:url'
 
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import vueDevTools from 'vite-plugin-vue-devtools'
+
+// https://vite.dev/config/
 export default defineConfig({
-  plugins: [vue()],
-  build: {
-    outDir: 'dist' // defaultnya dist, jadi tetap ok
-  }
+  plugins: [
+    vue(),
+    vueDevTools(),
+  ],
+  resolve: {
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url))
+    },
+  },
 })
