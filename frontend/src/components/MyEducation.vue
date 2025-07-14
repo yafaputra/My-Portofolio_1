@@ -161,17 +161,33 @@
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import SectionTitle from './SectionTitle.vue';
-const skills = ref([]);
+
+// ✅ Perbaikan 1: Ganti nama variable sesuai template
+const educationHistory = ref([]);
+const loading = ref(false);
+const error = ref(null);
 
 const API_URL = import.meta.env.PROD
   ? 'https://my-portofolio-1-d1pg.vercel.app/api/education'
-  : 'http://localhost:3000/api/education';  // ✅ Ubah ke education
+  : 'http://localhost:3000/api/education';
+
 onMounted(async () => {
-try {
-skills.value = (await axios.get(API_URL)).data;
-} catch (error) {
-console.error('Gagal mengambil data skill:', error);
-}
+  loading.value = true;
+
+  try {
+    console.log('Fetching education from:', API_URL);
+    const response = await axios.get(API_URL);
+
+    // ✅ Perbaikan 2: Assign ke educationHistory, bukan skills
+    educationHistory.value = response.data;
+
+    console.log('Education data loaded:', educationHistory.value);
+  } catch (err) {
+    console.error('Gagal mengambil data education:', err);
+    error.value = err.response?.data?.message || err.message;
+  } finally {
+    loading.value = false;
+  }
 });
 </script>
 <style scoped>
