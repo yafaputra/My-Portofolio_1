@@ -160,10 +160,12 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
+import SectionTitle from './SectionTitle.vue';
 const skills = ref([]);
+
 const API_URL = import.meta.env.PROD
-  ? 'https://my-portofolio-1-d1pg.vercel.app/api/education'  // Full URL ke API
-  : 'http://localhost:3000/api/skills';
+  ? 'https://my-portofolio-1-d1pg.vercel.app/api/education'
+  : 'http://localhost:3000/api/education';  // ✅ Ubah ke education
 onMounted(async () => {
 try {
 skills.value = (await axios.get(API_URL)).data;
