@@ -2,8 +2,8 @@
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
 const skills = ref([]);
-const API_URL = import.meta.env.MODE === 'production'
-  ? '/api/skills'
+const API_URL = import.meta.env.PROD
+  ? 'https://my-portofolio-1-d1pg.vercel.app/api/skills'  // Full URL ke API
   : 'http://localhost:3000/api/skills';
 onMounted(async () => {
 try {
