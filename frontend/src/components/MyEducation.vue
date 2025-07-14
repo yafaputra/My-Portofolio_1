@@ -156,21 +156,22 @@
   </section>
 </template>
 
+
 <script setup>
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
-import SectionTitle from './SectionTitle.vue';
-const educationHistory = ref([]);
-const API_URL = import.meta.env.PROD ? '/api/education' :
-'http://localhost:3000/api/education';
+const skills = ref([]);
+const API_URL = import.meta.env.PROD
+  ? 'https://my-portofolio-1-d1pg.vercel.app/api/education'  // Full URL ke API
+  : 'http://localhost:3000/api/skills';
 onMounted(async () => {
- try {
- educationHistory.value = (await axios.get(API_URL)).data;   } catch (error) {
- console.error('Gagal mengambil data pendidikan:', error);   }
+try {
+skills.value = (await axios.get(API_URL)).data;
+} catch (error) {
+console.error('Gagal mengambil data skill:', error);
+}
 });
-
 </script>
-
 <style scoped>
 @keyframes shapeFloat {
     0% {

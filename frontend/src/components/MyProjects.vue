@@ -4,8 +4,9 @@ import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import SectionTitle from './SectionTitle.vue';
 const projects = ref([]);
-const API_URL = import.meta.env.PROD ? '/api/projects' :
-'http://localhost:3000/api/projects';
+const API_URL = import.meta.env.PROD
+  ? 'https://my-portofolio-1-d1pg.vercel.app/api/projects'
+  : 'http://localhost:3000/api/skills';
 onMounted(async () => {
 try {
 projects.value = (await axios.get(API_URL)).data;
