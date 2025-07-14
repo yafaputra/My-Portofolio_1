@@ -1,13 +1,12 @@
 {
-  "name": "backend",
+  "name": "your-express-app",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-"scripts": { 
- "start": "node index.js", 
- "dev": "nodemon index.js" 
-}, 
-
+  "main": "backend/index.js",
+  "scripts": {
+    "start": "node backend/index.js",
+    "dev": "nodemon backend/index.js"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
